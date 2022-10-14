@@ -1,11 +1,7 @@
-import React, {useState, useEffect} from 'react'
-import { Typography, Container, CssBaseline,Box,TextField } from '@mui/material';
+import React, {useState, useEffect, FormEvent} from 'react'
+import { Typography, Container, CssBaseline,Box,TextField, Checkbox, Button, FormControlLabel } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Link from 'next/link';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Button from '@mui/material/Button';
-
 type CopyProps = {
     site: string;
     sx?:object;
@@ -53,6 +49,18 @@ useEffect(()=>{
 },[nome])
 
 
+const handleSubmit = (event: FormEvent<HTMLFormElement>)=>{
+    // Previne o comportamento padrão do formulário, que seria recarregar a página.
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+
+    console.log(data);
+}
+
+
+
+
+
   return (
     <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs">
@@ -61,13 +69,13 @@ useEffect(()=>{
                 <Typography component="h1" variant="h5">
                     Login
                 </Typography>
-                <Box component="form" onSubmit={(e)=>{console.log('enviou')}}>
+                <Box component="form" onSubmit={handleSubmit}>
                     {/* <button onClick={()=>setContador(contador+1)}>Muda o contador</button>
                     <button onClick={()=>setNome(nome.toUpperCase())}>Muda o Nome</button> */}
-                 {'O State contador vale: ' + contador }
+                 {/*'O State contador vale: ' + contador*/ }
 
 
-    <TextField margin="normal" required fullWidth id="email" label="Digite o e-mail" name="email" autoComplete="email" autoFocus/>
+    <TextField margin="normal" required  fullWidth id="email" label="Digite o e-mail" name="email" autoComplete="email" autoFocus/>
     <TextField margin="normal"  required fullWidth id="password" type="password" label="Digite a senha" name="password" autoComplete="current-password" autoFocus/>
                     <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Lembrar de mim" />
                     <Button type="submit" fullWidth variant="contained" sx={{mt:3, mb:2}}>Entrar</Button>
