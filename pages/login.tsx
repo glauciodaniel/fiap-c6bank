@@ -2,6 +2,9 @@ import React, {useState, useEffect} from 'react'
 import { Typography, Container, CssBaseline,Box,TextField } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Link from 'next/link';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Button from '@mui/material/Button';
 
 type CopyProps = {
     site: string;
@@ -28,7 +31,7 @@ export default function LoginPage() {
 
 const [empresa, setEmpresa] = useState<string>('');
 const [nome, setNome] = useState('');
-const [contador, setContador] = useState<number>(0);
+const [contador, setContador] = useState<number>(5);
 
 // A primeira vez após carregar a página e após o render
 // Executa também a cada alteração de estado
@@ -40,7 +43,14 @@ useEffect(()=>{
     }
    // setContador(contador + 1);
     console.log(`Executando useEffect a cada chamada ${contador}`);
-},[]);
+},[contador]);
+
+
+useEffect(()=>{
+    if(nome.length > 0 ){
+        console.log(`Executando useEffect mudando para maiúsculo ${nome}`);
+    }
+},[nome])
 
 
   return (
@@ -52,12 +62,15 @@ useEffect(()=>{
                     Login
                 </Typography>
                 <Box component="form" onSubmit={(e)=>{console.log('enviou')}}>
-                    <button onClick={()=>setContador(contador+1)}>Muda o contador</button>
+                    {/* <button onClick={()=>setContador(contador+1)}>Muda o contador</button>
+                    <button onClick={()=>setNome(nome.toUpperCase())}>Muda o Nome</button> */}
                  {'O State contador vale: ' + contador }
 
 
     <TextField margin="normal" required fullWidth id="email" label="Digite o e-mail" name="email" autoComplete="email" autoFocus/>
     <TextField margin="normal"  required fullWidth id="password" type="password" label="Digite a senha" name="password" autoComplete="current-password" autoFocus/>
+                    <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Lembrar de mim" />
+                    <Button type="submit" fullWidth variant="contained" sx={{mt:3, mb:2}}>Entrar</Button>
                 </Box>
              </Box>
             <Copyright site="www.avanade.com.br" sx={{mt:8, mb: 4}} />
