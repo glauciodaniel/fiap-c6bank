@@ -4,35 +4,8 @@ import { Typography, Container, CssBaseline,Box,TextField,
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 import Link from 'next/link';
+import Copyright from '../components/utils/Copyright';
 
-
-const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
-  props,
-  ref,
-) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
-
-
-
-
-type CopyProps = {
-    site: string;
-    sx?:object;
-}
-
-function Copyright(props:CopyProps){
-    return (
-        <Typography>
-            {'Copyright © '}
-            <Link color="inherit" href="https://www.avanade.com.br/">
-                {props.site}
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    )
-}
 
 const theme = createTheme();
 
@@ -83,9 +56,6 @@ useEffect(()=>{
 
 },[password]);
 
-const handleClose = ()=>{
-    setOpen(false);
-}
 
 const handleSubmit = (event: FormEvent<HTMLFormElement>)=>{
     // Previne o comportamento padrão do formulário, que seria recarregar a página.
@@ -107,11 +77,7 @@ const handleSubmit = (event: FormEvent<HTMLFormElement>)=>{
     <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs">
             <CssBaseline />
-                <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
-                    <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-                    Usuário autenticado com sucesso... aguarde...
-                    </Alert>
-                </Snackbar>
+                
 
 
 
