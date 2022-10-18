@@ -16,6 +16,7 @@ const MenuContainer = styled.nav`
             display: flex;
             line-height: 60px;
             border-left: 4px solid transparent;
+            padding-left: 5%;
             &:hover {
                 background-color: #616161;
                 border-left: 4px solid #ffef0d;
