@@ -1,12 +1,6 @@
-import React from 'react'
-type TypeDb = {
-    id: number,
-    date: string,
-    description: string,
-    amount: number,
-    type: string,
-    operation ?: string
-}
+import React from 'react';
+import TypeDb from '../../types/TypeDb';
+
 type ExtractDataProps = {
     db: Array<TypeDb>
 }
@@ -21,6 +15,7 @@ export default function ExtractData(props:ExtractDataProps) {
                     <p>{item.description}</p>
                     <p>{item.amount}</p>
                     <p>{item.type}</p>
+                    <p>{item.operation}</p>
                 </div>
             )
         })}
