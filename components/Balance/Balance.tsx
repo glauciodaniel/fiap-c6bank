@@ -15,7 +15,7 @@ background-color: #242424;
 
 
 export default function Balance() {
-const [show, setShow] = useState<boolean>(true);
+const [show, setShow] = useState<boolean>(false);
 
   return (
     <BalanceContainer>
@@ -28,8 +28,7 @@ const [show, setShow] = useState<boolean>(true);
                 <strong>R$ ******,**</strong>
               }
 
-            <button onClick={() => setShow(!show)}>{show ? 'Ocultar' : 'Mostrar'}</button>
-            
+            <button onClick={() => setShow(!show)}>{show ? 'Ocultar' : 'Mostrar'}</button>           
         </div>
     </BalanceContainer>
   )
