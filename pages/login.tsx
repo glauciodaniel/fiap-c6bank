@@ -4,6 +4,7 @@ import { Typography, Container, CssBaseline,Box,TextField,
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Copyright from '../components/utils/Copyright';
 import Snackbar from '../components/utils/Snackbar';
+import axios from 'axios';
 
 const theme = createTheme();
 
@@ -29,7 +30,19 @@ useEffect(()=>{
         setErrorMessage('');
         //enviar o formulário para o servidor........
         //deu certo... vamos criar o snackbar...
-        setOpen(true);
+       // setOpen(true);
+       axios.post('http://localhost:3000/auth/login', {
+        email,
+        password
+    }).then((response)=>{
+        console.log(response);      
+        if(response.status == 200){
+            setOpen(true);
+        }
+    }).catch((error)=>{
+        console.log(error);
+    })
+
     }
 
 },[password]);
