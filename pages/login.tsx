@@ -32,7 +32,7 @@ useEffect(()=>{
         //deu certo... vamos criar o snackbar...
        // setOpen(true);
        axios.post('http://localhost:3000/auth/login', {
-        email,
+        login: email,
         password
     }).then((response)=>{
         console.log(response);      
